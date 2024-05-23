@@ -1,4 +1,4 @@
-// Usage: make ad2mo.c && ./ad2mo
+// Usage: make ad2mo && ./ad2mo
 
 #include <stdio.h>
 #include <stdlib.h>
