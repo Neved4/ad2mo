@@ -1,5 +1,20 @@
-# `ad2mo` - Convert Gregorian (AD) dates to Mekadimo calendar
+# `ad2mo` - Convert date from Gregorian to Mekadimo
 
-###### Originally from: [`.mekadimo_date.py`]
+Convert Gregorian "A.D." dates to Mekadimo date format.
 
-[`.mekadimo_date.py`]: https://github.com/lajtomekadimon/desktop-distros-config/blob/main/tiling-wm-config/.mekadimo_date.py
+###### Originally from: [`mekadimo_date.py`]
+
+## Usage
+
+```console
+$ echo $(date -u +"%Y-%m-%d") | ./ad2mo.awk
+Printuno 64, 0
+```
+
+```console
+$ make ad2mo && ./ad2mo
+Printuno 64, 0
+```
+
+
+[`mekadimo_date.py`]: https://github.com/lajtomekadimon/desktop-distros-config/blob/main/tiling-wm-config/.mekadimo_date.py
