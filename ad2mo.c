@@ -5,7 +5,9 @@
 #include <string.h>
 #include <time.h>
 
-const char* month_names[] = {"Printuno", "Sometro", "Awtempo", "Vinro"};
+static const char* month_names[] = {
+	"Printuno", "Sometro", "Awtempo", "Vinro"
+};
 
 typedef struct {
 	int month;
