@@ -3,6 +3,7 @@
 #include <string.h>
 #include <time.h>
 #include <unistd.h>
+#include <getopt.h>
 
 static const char* month_names[] = {
 	"Printuno", "Sometro", "Awtempo", "Vinro"
@@ -262,7 +263,10 @@ const char* lookup_mapped_date(int month, int day, int is_leap) {
 	return NULL;
 }
 
-void map_date(int year, int month, int day, int *mo_year, int *mo_month, int *mo_day) {
+void map_date(
+	int year, int month, int day,
+	int *mo_year, int *mo_month, int *mo_day
+) {
 	int year_is_leap  = is_leap_year(year);
 	int first_mo_gday = year_is_leap ? 20 : 21;
 
@@ -278,14 +282,43 @@ void map_date(int year, int month, int day, int *mo_year, int *mo_month, int *mo
 	}
 }
 
-int main() {
+void usage() {
+	fprintf(stderr, "Usage: %s [-i] ...\n", "ad2mo");
+	fprintf(stderr, "\n%s\n", "Options:");
+	fprintf(stderr, "%s\n", "  -i  Print date in ISO 8601 format");
+}
+
+int main(int argc, char *argv[]) {
+	int opt, iso_fmt = 0;
+
+	while ((opt = getopt(argc, argv, "i")) != -1) {
+		switch (opt) {
+		case 'i':
+			iso_fmt = 1;
+			break;
+		default:
+			usage();
+			return EXIT_FAILURE;
+		}
+	}
+
 	int year, month, day;
 	int mo_year, mo_month, mo_day;
 
-	current_date(&year, &month, &day);
+	if (isatty(STDIN_FILENO)) {
+		current_date(&year, &month, &day);
+	} else {
+		if (scanf("%d-%d-%d", &year, &month, &day) != 3) {
+			fprintf(stderr, "Invalid date format\n");
+			return EXIT_FAILURE;
+		}
+	}
+
 	map_date(year, month, day, &mo_year, &mo_month, &mo_day);
 
-	if (mo_day == 91) {
+	if (iso_fmt) {
+		printf("%04d-%02d-%02d\n", mo_year, mo_month, mo_day);
+	} else if (mo_day == 91) {
 		if (mo_month == 4) {
 			printf("Mekadimo Day, %d\n", mo_year);
 		} else if (mo_month == 2) {
