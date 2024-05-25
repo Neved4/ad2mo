@@ -1,4 +1,4 @@
-# `ad2mo` - Gregorian to Mekadimo dates! 📟
+# `ad2mo` - Gregorian to Mekadimo dates! ⌚️
 
 Convert dates from Gregorian _"A.D."_ to Mekadimo date format.
 
