@@ -1,9 +1,8 @@
-// Usage: make ad2mo && ./ad2mo
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include <unistd.h>
 
 static const char* month_names[] = {
 	"Printuno", "Sometro", "Awtempo", "Vinro"

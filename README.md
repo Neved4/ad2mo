@@ -6,13 +6,21 @@ Convert Gregorian "A.D." dates to Mekadimo date format.
 
 ## Usage
 
-Awk version:
+### AWK version
+
 ```console
 $ echo $(date -u +"%Y-%m-%d") | ./ad2mo.awk
 Printuno 64, 0
+
+$ ./ad2mo.awk
+Printuno 64, 0
+
+$ ./ad2mo.awk -v iso_fmt=1
+0000-01-66
 ```
 
-C version:
+### C version
+
 ```console
 $ make ad2mo && ./ad2mo
 Printuno 64, 0
